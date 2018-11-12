@@ -10,22 +10,26 @@ import UIKit
 
 class MiddleButtonTabBarController: UITabBarController {
     
+    // MARK: - Properties
+    @IBInspectable var itemFontColor: UIColor? { didSet { didSetItemFontColor() } }
+    @IBInspectable var selectedItemFontColor: UIColor? { didSet { didSetSelectedItemFontColor() } }
+    
+    // MARK: - Private properties
     fileprivate var itemFont: UIFont = .systemFont(ofSize: 10)
     fileprivate var selectedItemFont: UIFont = .systemFont(ofSize: 10, weight: .bold)
     
+    // MARK: - Override properties
     override var viewControllers: [UIViewController]? { didSet { didSetViewControllers() } }
     override var selectedViewController: UIViewController? { willSet { willSetSelectedViewController() }
-        didSet { didSetSelectedViewController() } }
+                                                             didSet { didSetSelectedViewController() } }
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        didSetSelectedViewController()
-    }
-    
+    // MARK: - Methods
     func setItemFont(_ font: UIFont) {
         itemFont = font
         for viewController in (viewControllers ?? []) {
@@ -39,6 +43,13 @@ class MiddleButtonTabBarController: UITabBarController {
         selectedViewController?.tabBarItem.setTitleTextAttributes([.font: font], for: .normal)
     }
     
+    
+    // MARK: - Private Methods
+    fileprivate func setup() {
+        didSetViewControllers()
+        didSetSelectedViewController()
+    }
+    
     fileprivate func didSetViewControllers() {
         for viewController in (viewControllers ?? []) {
             let tabBarItem = UITabBarItem(title: viewController.tabBarItem.title,
@@ -46,6 +57,14 @@ class MiddleButtonTabBarController: UITabBarController {
                                           selectedImage: viewController.tabBarItem.selectedImage?.withRenderingMode(.alwaysOriginal))
             viewController.tabBarItem = tabBarItem
         }
+    }
+    
+    fileprivate func didSetItemFontColor() {
+        tabBar.unselectedItemTintColor = itemFontColor
+    }
+    
+    fileprivate func didSetSelectedItemFontColor() {
+        tabBar.tintColor = selectedItemFontColor
     }
     
     fileprivate func willSetSelectedViewController() {
