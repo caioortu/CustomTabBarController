@@ -89,13 +89,16 @@ class MiddleButtonTabBarController: UITabBarController {
     }
     
     fileprivate func didSetSelectedViewController() {
+        if let middleButton = middleButton {
+            tabBar.bringSubviewToFront(middleButton)
+        }
         selectedViewController?.tabBarItem.setTitleTextAttributes([.font: selectedItemFont], for: .normal)
     }
     
     fileprivate func setupMiddleButton(title: String? = nil, image: UIImage? = nil, selectedImage: UIImage? = nil) {
         let height: CGFloat = 86
         let middleButton = TarBarMiddleButton(title: title, image: image, selectedImage: selectedImage)
-        view.addSubview(middleButton)
+        tabBar.addSubview(middleButton)
         middleButton.translatesAutoresizingMaskIntoConstraints = false
         middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -16).isActive = true
         middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor).isActive = true
@@ -115,6 +118,7 @@ class MiddleButtonTabBarController: UITabBarController {
     @objc fileprivate func middleButtonTouchUpInside(_ sender: Any) {
         guard let middleIndex = middleIndex else { return }
         middleButton?.setSelected(true)
+        willSetSelectedViewController()
         selectedIndex = middleIndex
     }
 }
