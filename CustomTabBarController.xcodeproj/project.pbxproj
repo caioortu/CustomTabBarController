@@ -14,6 +14,8 @@
 		25170BE62194A420005EC57B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25170BE52194A420005EC57B /* Assets.xcassets */; };
 		25170BE92194A420005EC57B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25170BE72194A420005EC57B /* LaunchScreen.storyboard */; };
 		25170BF32194B4F1005EC57B /* NSLayoutConstraintExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25170BF22194B4F1005EC57B /* NSLayoutConstraintExtention.swift */; };
+		25A04E3A2199A9BC007280C2 /* TarBarMiddleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A04E392199A9BC007280C2 /* TarBarMiddleButton.swift */; };
+		25A04E3C2199C230007280C2 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A04E3B2199C230007280C2 /* ThirdViewController.swift */; };
 		25E2214521998EA700EE948B /* MiddleButtonTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E2214421998EA700EE948B /* MiddleButtonTabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +29,8 @@
 		25170BE82194A420005EC57B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25170BEA2194A420005EC57B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25170BF22194B4F1005EC57B /* NSLayoutConstraintExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtention.swift; sourceTree = "<group>"; };
+		25A04E392199A9BC007280C2 /* TarBarMiddleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarBarMiddleButton.swift; sourceTree = "<group>"; };
+		25A04E3B2199C230007280C2 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		25E2214421998EA700EE948B /* MiddleButtonTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleButtonTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +72,7 @@
 				25170BE52194A420005EC57B /* Assets.xcassets */,
 				25170BE72194A420005EC57B /* LaunchScreen.storyboard */,
 				25170BEA2194A420005EC57B /* Info.plist */,
+				25A04E3B2199C230007280C2 /* ThirdViewController.swift */,
 			);
 			path = CustomTabBarController;
 			sourceTree = "<group>";
@@ -77,6 +82,7 @@
 			children = (
 				25170BF22194B4F1005EC57B /* NSLayoutConstraintExtention.swift */,
 				25E2214421998EA700EE948B /* MiddleButtonTabBarController.swift */,
+				25A04E392199A9BC007280C2 /* TarBarMiddleButton.swift */,
 			);
 			path = CustomTabBar;
 			sourceTree = "<group>";
@@ -155,7 +161,9 @@
 				25E2214521998EA700EE948B /* MiddleButtonTabBarController.swift in Sources */,
 				25170BE12194A41F005EC57B /* SecondViewController.swift in Sources */,
 				25170BF32194B4F1005EC57B /* NSLayoutConstraintExtention.swift in Sources */,
+				25A04E3C2199C230007280C2 /* ThirdViewController.swift in Sources */,
 				25170BDD2194A41F005EC57B /* AppDelegate.swift in Sources */,
+				25A04E3A2199A9BC007280C2 /* TarBarMiddleButton.swift in Sources */,
 				25170BDF2194A41F005EC57B /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
