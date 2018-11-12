@@ -15,6 +15,7 @@ class MiddleButtonTabBarController: UITabBarController {
     @IBInspectable var selectedItemFontColor: UIColor? { didSet { tabBar.tintColor = selectedItemFontColor } }
     @IBInspectable var middleButtonFontColor: UIColor? { didSet { middleButton?.buttonFontColor = middleButtonFontColor } }
     @IBInspectable var selectedMiddleButtonFontColor: UIColor? { didSet { middleButton?.selectedButtonFontColor = selectedMiddleButtonFontColor } }
+    @IBInspectable var middleButtonColor: UIColor? { didSet { middleButton?.backgroundColor = middleButtonColor } }
     
     // MARK: - Private properties
     fileprivate var itemFont: UIFont = .systemFont(ofSize: 10)
@@ -27,12 +28,17 @@ class MiddleButtonTabBarController: UITabBarController {
     // MARK: - Override properties
     override var viewControllers: [UIViewController]? { didSet { didSetViewControllers() } }
     override var selectedViewController: UIViewController? { willSet { willSetSelectedViewController() }
-                                                             didSet { didSetSelectedViewController() } }
+        didSet { didSetSelectedViewController() } }
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        didSetSelectedViewController()
     }
     
     // MARK: - Methods
@@ -62,7 +68,6 @@ class MiddleButtonTabBarController: UITabBarController {
     // MARK: - Private Methods
     fileprivate func setup() {
         didSetViewControllers()
-        didSetSelectedViewController()
     }
     
     fileprivate func didSetViewControllers() {
@@ -96,15 +101,15 @@ class MiddleButtonTabBarController: UITabBarController {
     }
     
     fileprivate func setupMiddleButton(title: String? = nil, image: UIImage? = nil, selectedImage: UIImage? = nil) {
-        let height: CGFloat = 86
+        let height: CGFloat = 78
         let middleButton = TarBarMiddleButton(title: title, image: image, selectedImage: selectedImage)
         tabBar.addSubview(middleButton)
         middleButton.translatesAutoresizingMaskIntoConstraints = false
-        middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -16).isActive = true
-        middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor).isActive = true
+        middleButton.centerYAnchor.constraint(equalTo: tabBar.layoutMarginsGuide.centerYAnchor).isActive = true
+        middleButton.centerXAnchor.constraint(equalTo: tabBar.layoutMarginsGuide.centerXAnchor).isActive = true
         middleButton.widthAnchor.constraint(equalToConstant: height).isActive = true
         middleButton.heightAnchor.constraint(equalToConstant: height).isActive = true
-        middleButton.backgroundColor = #colorLiteral(red: 0.1529411765, green: 0.2039215686, blue: 0.5960784314, alpha: 1)
+        middleButton.backgroundColor = middleButtonColor
         middleButton.buttonFont = middleButtonFont
         middleButton.selectedButtonFont = selectedMiddleButtonFont
         middleButton.buttonFontColor = middleButtonFontColor
