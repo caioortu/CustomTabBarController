@@ -87,17 +87,18 @@ class MiddleButtonTabBarController: UITabBarController {
     }
     
     fileprivate func willSetSelectedViewController() {
-        if let middleIndex = middleIndex, let middleButton = middleButton, selectedViewController == viewControllers?[middleIndex] {
-            middleButton.setSelected(false)
-        }
         selectedViewController?.tabBarItem.setTitleTextAttributes([.font: itemFont], for: .normal)
     }
     
     fileprivate func didSetSelectedViewController() {
-        if let middleButton = middleButton {
+        guard let middleIndex = middleIndex, selectedViewController == viewControllers?[middleIndex] else {
+            middleButton?.setSelected(false)
+            selectedViewController?.tabBarItem.setTitleTextAttributes([.font: selectedItemFont], for: .normal)
+            guard let middleButton = middleButton else { return }
             tabBar.bringSubviewToFront(middleButton)
+            return
         }
-        selectedViewController?.tabBarItem.setTitleTextAttributes([.font: selectedItemFont], for: .normal)
+        middleButton?.setSelected(true)
     }
     
     fileprivate func setupMiddleButton(title: String? = nil, image: UIImage? = nil, selectedImage: UIImage? = nil) {
@@ -122,8 +123,7 @@ class MiddleButtonTabBarController: UITabBarController {
     
     @objc fileprivate func middleButtonTouchUpInside(_ sender: Any) {
         guard let middleIndex = middleIndex else { return }
-        middleButton?.setSelected(true)
-        willSetSelectedViewController()
-        selectedIndex = middleIndex
+        guard let viewControllers = viewControllers else { return }
+        selectedViewController = viewControllers[middleIndex]
     }
 }
